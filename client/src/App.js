@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useContext } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Copyright from "./components/copyright";
+import Coveragereport from "./components/coverageReport";
+import MainPage from "./components/mainPage";
+import UserDetailsContext from './context/context';
+import ErrorBoundary from './components/errorboundary'
 
 function App() {
+  // const {mainPageNave} = useContext(UserDetailsContext)
+  const contextValue= useContext(UserDetailsContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+        {contextValue.userDetails?.mainPageNave == false && <MainPage />}
+        
+        {contextValue.userDetails?.mainPageNave == true && 
+        <section className='CoverageReportSection'>
+          <Coveragereport/>
+        </section>}
+        <footer className='customFooter_section'>
+          <Copyright />
+        </footer>
+      </div>
+    </ErrorBoundary>
   );
 }
 

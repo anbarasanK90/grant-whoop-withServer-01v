@@ -1,13 +1,302 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*,body,p {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'League Gothic';
+  font-weight: normal;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+h1,h2,h3,h4,h5,h6{
+  font-family: 'League Gothic'!important;
+}
+p{
+  font-family: Helvetica, Sans-Serif!important;
+  line-height: normal;
+}
+:root{
+  /* Theme colors */
+  --color-primary:#1c46b4;
+  --color-orange:#eb7c25;
+  --color-textBlue:#1972ba;
+  --bg-listbackground:rgb(248 250 252);
+  --green-border:#74c047;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+@font-face {
+  font-family: 'League Gothic SemiCondensed';
+  src: url('../src/fonts/LeagueGothicSemiCondensed-Regular.eot');
+  src: url('../src/fonts/LeagueGothicSemiCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../src/fonts/LeagueGothicSemiCondensed-Regular.woff2') format('woff2'),
+      url('../src/fonts/LeagueGothicSemiCondensed-Regular.woff') format('woff'),
+      url('../src/fonts/LeagueGothicSemiCondensed-Regular.ttf') format('truetype'),
+      url('../src/fonts/LeagueGothicSemiCondensed-Regular.svg#LeagueGothicSemiCondensed-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'League Gothic Condensed';
+  src: url('../src/fonts/LeagueGothicCondensed-Regular.eot');
+  src: url('../src/fonts/LeagueGothicCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../src/fonts/LeagueGothicCondensed-Regular.woff2') format('woff2'),
+      url('../src/fonts/LeagueGothicCondensed-Regular.woff') format('woff'),
+      url('../src/fonts/LeagueGothicCondensed-Regular.ttf') format('truetype'),
+      url('../src/fonts/LeagueGothicCondensed-Regular.svg#LeagueGothicCondensed-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'League Gothic';
+  src: url('../src/fonts/LeagueGothic-Regular.eot');
+  src: url('../src/fonts/LeagueGothic-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../src/fonts/LeagueGothic-Regular.woff2') format('woff2'),
+      url('../src/fonts/LeagueGothic-Regular.woff') format('woff'),
+      url('../src/fonts/LeagueGothic-Regular.ttf') format('truetype'),
+      url('../src/fonts/LeagueGothic-Regular.svg#LeagueGothic-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.carousalSection{
+  background-image: url('../src/images/01_Sky_BG.jpg');
+  /* height: 90vh;
+    min-height: 500px;
+    max-height: 1300px ; */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.CoverageReportSection{
+  background-image: url('../src/images/01_Sky_BG.jpg');
+  /* height: 90vh;
+    min-height: 500px;
+    max-height: 1300px ; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.whoopconnectSection{
+  background-image: url('../src/images/01_Sky_BG.jpg');
+  /* height: 90vh;
+    min-height: 500px;
+    max-height: 1300px ; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top:3rem;
+    padding-bottom:3rem;
+    border-top: 10px solid #eb7c25;
+    border-bottom: 10px solid #eb7c25;
+}
+.disclaimer_section{
+  background: #fff;
+  padding-top:3rem;
+  padding-bottom: 3rem;
+}
+.customFooter_section{
+  background: #2391ff;
+  padding-top:2rem;
+  padding-bottom:2rem;
+}
+.LetsconnectSection{
+  background: #fff;
+  padding-top:3rem;
+  padding-bottom:3rem;
+}
+.text_orange{
+  color:var(--color-orange);
+}
+.text_blue{
+  color:var(--color-textBlue);
+}
+.applyTodayDiv{
+  background: rgb(235,90,12);
+background: linear-gradient(90deg, rgba(235,90,12,1) 0%, rgba(242,147,96,1) 100%);
+padding: 15px;
+border:2px solid #fff;
+border-radius: 10px;
+}
+.custom_input{
+  width:100%;
+  background: #fff;
+  padding: 4px;
+  border-radius: 5px;
+  border:2px solid #74c047;
+}
+.custom_input input{
+  text-align: center;
+}
+.btn_success{
+  background-color:#74c047!important;
+  border:2px solid #fff!important;
+}
+.carousal_right_img{
+  position: absolute;
+  right:0px;
+  top:98px;
+}
+.slick-arrow.slick-next, .slick-arrow.slick-previous{
+display: none!important;
+}
+.carousalSection .slick-dots{
+  bottom:8px;
+}
+.carousalSection .slick-dots li button:before{
+  font-size: 12px;
+  color:#fff;
+}
+.carousalSection .slick-dots li.slick-active button:before{
+  color:#fff;
+}
+ul.listItemsTwo {
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  column-count: 2;
+  column-gap: 10px;
+  text-align: left;
+  list-style: disc;
+  padding-left: 30px;
+  margin-top:15px;
+}
+ul.listItemsTwo li{
+  font-size: 20px;
+}
+.textAlignLast{
+  text-align-last: center;
+}
+.CoverageDiv{
+  border:6px solid #eb7c25;
+  border-radius:20px;
+  padding:15px;
+  background: #fff;
+}
+.CoverageDiv .custom_input {
+  width: 100%;
+  background: #fff;
+  padding: 1px;
+  border-radius: 10px;
+  border: 1.5px solid #74c047;
+}
+.CoverageDiv .btn_success {
+  background-color: #74c047!important;
+  border: 1.5px solid #fff!important;
+  border-radius: 10px;
+  box-shadow: none;
+    padding: 6px!important;
+    text-transform: capitalize;
+}
+.CoverageDiv .MuiSlider-markLabel.MuiSlider-markLabel{
+  top:-16px;
+}
+.CoverageDiv [data-index="0"].MuiSlider-markLabel.MuiSlider-markLabel{
+  left:5%!important;
+}
+.CoverageDiv [data-index="3"].MuiSlider-markLabel.MuiSlider-markLabel{
+  left:90%!important;
+}
+.CoverageDiv .MuiSlider-mark{
+  background: #eb7c25;
+}
+.CoverageDiv .MuiSlider-root{
+  height:8px;
+}
+.CoverageDiv .MuiFormLabel-root{
+  background: #fff;
+  font-size: 15px;
+}
+.font_xs{
+  font-size: 10px;
+  align-items: flex-start!important;
+}
+.font_xs .MuiFormControlLabel-label{
+  font-size: 10px;
+}
+.font_small{
+  font-size: 12px;
+}
+.font_medium{
+  font-size: 14px;
+}
+.font_regular{
+  font-size: 16px;
+}
+.font_large{
+  font-size: 18px;
+}
+.CoverageDiv .btn_secondary {
+  background-color: #808285!important;
+  border: 1.5px solid #fff!important;
+  border-radius: 10px;
+  box-shadow: none;
+    padding: 6px!important;
+    color:#fff!important;
+    text-transform: capitalize;
+}
+.CoverageDiv .MuiStepper-root.MuiStepper-horizontal .MuiStep-root{
+  padding:0px;
+}
+.CoverageDiv .MuiStepper-root.MuiStepper-horizontal .MuiStep-root .MuiStepLabel-iconContainer{
+  padding-right: 0px;
+}
+.CoverageDiv .MuiStepConnector-line{
+  border-top-width: 6px;
+}
+.CoverageDiv .MuiStepIcon-root{
+  width: 0.7em;
+  height: 0.7em;
+  color:#cacaca;
+}
+.CoverageDiv .MuiStepIcon-root.Mui-completed{
+  color:#1972b9;
+}
+.CoverageDiv .MuiOutlinedInput-notchedOutline{
+  border-color:#83c65c;
+}
+.CoverageDiv .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border-width: 1px;
+}
+.CoverageDiv .MuiButtonBase-root.MuiListItemButton-root{
+  border: 1px solid #83c65c;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 5px 15px;
+  background: #f6f6f9;
+}
+.CoverageDiv .MuiButtonBase-root.MuiListItemButton-root.Mui-selected{
+  background: #ccc;
+}
+.CoverageDiv .MuiButtonBase-root.MuiListItemButton-root .MuiTypography-root{
+  font-size: 12px;
+}
+.background_grey{
+  background-color: var( --bg-listbackground);
+}
+.green_border{
+  border-width: 1px;
+  border-color:var(--green-border);
+}
+.readonlyvalues .formCaption{
+  font-family: Arial, Helvetica, sans-serif!important;
+  font-size: 12px;
+  font-weight: 600;
+}
+.readonlyvalues .formValue{
+  font-family: Arial, Helvetica, sans-serif!important;
+  word-break: break-all;
+  font-size: 13px;
+  margin-left: 15px;
+}
+.addressCheckbox .MuiCheckbox-root{
+  padding-top:0px;
+  padding-bottom: 0px;
 }

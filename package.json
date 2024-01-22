@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "concurrently \"node server/server.js\" \"cd client && npm start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "name": "grant-whoop-withserver-01v",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
