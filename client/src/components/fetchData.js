@@ -1,25 +1,14 @@
 // api.js (or any other file)
 import axios from 'axios';
 
-export const fetchData = async (apiUrl, requestBody, base64Credentials) => {
+export const fetchData = async (requestBody) => {
   try {
-    const response = await axios.post(apiUrl, requestBody, {
-      headers: {
-        'Authorization': `Basic ${base64Credentials}`,
-        'Content-Type': 'application/json',
-      },
-    });
 
-    // Handle the API response data
-    console.log(response.data);
+    // Make the first POST request to the server
+    const response = await axios.post('http://localhost:3001/api/client-post', requestBody);
 
-    // Return the response data or perform any other actions if needed
-    return response.data;
+    console.log('Server Response:', response.data);
   } catch (error) {
-    // Handle errors
-    console.error('Error:', error);
-
-    // Optionally rethrow the error or return an error object
-    throw error;
+    console.error('Error in first POST request:', error.message);
   }
 };

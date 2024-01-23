@@ -13,6 +13,8 @@ const UserDetailsContext = createContext({
   ssn: '',
   dob: '',
   phNumber:'',
+  currentlyParticipate: '',
+  disclosureAgreements: false,
   errorState: {
     firstNameError: false,
     lastNameError: false,

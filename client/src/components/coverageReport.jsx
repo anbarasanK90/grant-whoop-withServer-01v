@@ -22,7 +22,7 @@ import Slide_7_Tablet from "../images/Slide_7_Tablet.png";
 import UserDetailsContext from "../context/context";
 import { fetchData } from "../components/fetchData";
 import TextFieldComponent from "../components/textfieldComponent";
-import { step_1_Labels } from "../context/labels";
+import { step_1_Labels, validation } from "../context/labels";
 import DatePicker from "../components/datepicker";
 const marks = [
   {
@@ -62,19 +62,24 @@ const Coveragereport = () => {
   };
 
   const errorValidate = () => {
-    const setError = step_1_Labels.reduce((errorObject, value) => {
-        errorObject[`${value}Error`] = !contextValue.userDetails[value];
-        return errorObject;
-      }, {});
-    contextValue.userDetails?.setUserDetails({
-        errorState: {
-        ...contextValue.userDetails?.errorState,
-        ...setError
-        },
-    });
-    return (Object.values(setError).filter(value => value === true).length) === 0;
+    if(validation[`${contextValue.userDetails?.showNextPage}_Labels`]) {
+      const setError = validation[`${contextValue.userDetails?.showNextPage}_Labels`]?.reduce((errorObject, value) => {
+          errorObject[`${value}Error`] = !contextValue.userDetails[value];
+          console.log( contextValue.userDetails[value])
+          return errorObject;
+        }, {});
+      contextValue.userDetails?.setUserDetails({
+          errorState: {
+          ...contextValue.userDetails?.errorState,
+          ...setError
+          },
+      });
+      return (Object.values(setError).filter(value => value === true).length) === 0;
+    }else {
+      return true
+    }
   };
-
+  
   const handleNext = () => {
     if (contextValue.userDetails?.showNextPage !== "Step_6" &&
       errorValidate()
@@ -95,15 +100,7 @@ const Coveragereport = () => {
         });
       }
     } else if (contextValue.userDetails?.showNextPage === "Step_6") {
-      const apiUrl = process.env.REACT_APP_BACKEND_URL;
-
-      // Your username and password
-      const username = process.env.REACT_APP_UID;
-      const password = process.env.REACT_APP_PID;
-      // Create a base64-encoded string of the username and password
-      const base64Credentials = btoa(`${username}:${password}`);
-
-      // Your request payload for a POST request (adjust as needed)
+      
       const requestBody = {
         api_key: process.env.REACT_APP_API_KEY,
         applicant_first_name: "string: REQUIRED",
@@ -145,8 +142,8 @@ const Coveragereport = () => {
         bqp_alt_name: "string",
         bqp_last_name_two: "string",
       };
-
-      fetchData(apiUrl, requestBody, base64Credentials);
+      // postData(requestBody);
+      fetchData(requestBody);
     }
   };
 
@@ -181,8 +178,10 @@ const Coveragereport = () => {
   };
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+  const handleListItemClick = (event) => {
+    contextValue.userDetails?.setUserDetails({
+      currentlyParticipate: event.target.innerText,
+    });
   };
 
   return (
@@ -312,7 +311,7 @@ const Coveragereport = () => {
                             label="Date of Birth"
                             name={"dob"}
                           />
-                          {/* <DatePicker /> */}
+                          <DatePicker /> 
                         </Grid>
                         <Grid item xs={12} md={12} lg={12}>
                           <TextFieldComponent
@@ -463,7 +462,14 @@ Program for Women, Infants & Children (WIC)"
                       <FormGroup className="items-start" key="termes_agree1">
                         <FormControlLabel
                           className="font_xs"
-                          control={<Checkbox defaultChecked size="small" />}
+                          control={<Checkbox defaultChecked size="small" checked={
+                            contextValue && contextValue.userDetails?.disclosureAgreements
+                          }
+                          onChange={(e) => {
+                            contextValue.userDetails?.setUserDetails({
+                              disclosureAgreements: e.target.checked,
+                            });
+                          }}/>}
                           label="For my household, I affirm and understand that the 
                                         Affordable Connectivity Program (ACP) is a federal 
                                         government benefit program operated by the (FCC) 

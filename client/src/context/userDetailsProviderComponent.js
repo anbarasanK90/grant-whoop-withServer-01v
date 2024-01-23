@@ -17,6 +17,8 @@ const UserDetailsProvider = ({ children }) => {
     ssn,
     dob,
     phNumber,
+    currentlyParticipate,
+    disclosureAgreements,
     errorState
   }) => {
     updateUserDetails(prevState => {
@@ -35,6 +37,8 @@ const UserDetailsProvider = ({ children }) => {
         ssn,
         dob,
         phNumber,
+        currentlyParticipate,
+        disclosureAgreements,
         errorState: {
           ...prevState.errorState, // Preserve existing errorState values
           ...errorState, // Update with new errorState values
@@ -56,6 +60,8 @@ const UserDetailsProvider = ({ children }) => {
     ssn: '',
     dob: '',
     phNumber:'',
+    currentlyParticipate: '',
+    disclosureAgreements: false,
     setUserDetails,
     errorState: {
       firstNameError: false,
