@@ -15,6 +15,12 @@ const UserDetailsContext = createContext({
   phNumber:'',
   currentlyParticipate: '',
   disclosureAgreements: false,
+  ADDRESSLINE1: '',
+  ADDRESSLINE2: '',
+  City: '',
+  State: '',
+  ADDRESSZipcode: '',
+  addressAgree: false,
   errorState: {
     firstNameError: false,
     lastNameError: false,

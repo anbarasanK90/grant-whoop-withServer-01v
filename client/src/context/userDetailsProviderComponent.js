@@ -19,6 +19,12 @@ const UserDetailsProvider = ({ children }) => {
     phNumber,
     currentlyParticipate,
     disclosureAgreements,
+    ADDRESSLINE1,
+    ADDRESSLINE2,
+    City,
+    State,
+    ADDRESSZipcode,
+    addressAgree,
     errorState
   }) => {
     updateUserDetails(prevState => {
@@ -39,6 +45,12 @@ const UserDetailsProvider = ({ children }) => {
         phNumber,
         currentlyParticipate,
         disclosureAgreements,
+        ADDRESSLINE1,
+        ADDRESSLINE2,
+        City,
+        State,
+        ADDRESSZipcode,
+        addressAgree,
         errorState: {
           ...prevState.errorState, // Preserve existing errorState values
           ...errorState, // Update with new errorState values
@@ -62,6 +74,12 @@ const UserDetailsProvider = ({ children }) => {
     phNumber:'',
     currentlyParticipate: '',
     disclosureAgreements: false,
+    ADDRESSLINE1: '',
+    ADDRESSLINE2: '',
+    City: '',
+    State: '',
+    ADDRESSZipcode: '',
+    addressAgree: false,
     setUserDetails,
     errorState: {
       firstNameError: false,
