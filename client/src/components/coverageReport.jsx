@@ -22,7 +22,7 @@ import Slide_7_Tablet from "../images/Slide_7_Tablet.png";
 import UserDetailsContext from "../context/context";
 import { fetchData } from "../components/fetchData";
 import TextFieldComponent from "../components/textfieldComponent";
-import { step_1_Labels } from "../context/labels";
+import { step_1_Labels, validation } from "../context/labels";
 import DatePicker from "../components/datepicker";
 const marks = [
   {
@@ -62,19 +62,24 @@ const Coveragereport = () => {
   };
 
   const errorValidate = () => {
-    const setError = step_1_Labels.reduce((errorObject, value) => {
-        errorObject[`${value}Error`] = !contextValue.userDetails[value];
-        return errorObject;
-      }, {});
-    contextValue.userDetails?.setUserDetails({
-        errorState: {
-        ...contextValue.userDetails?.errorState,
-        ...setError
-        },
-    });
-    return (Object.values(setError).filter(value => value === true).length) === 0;
+    if(validation[`${contextValue.userDetails?.showNextPage}_Labels`]) {
+      const setError = validation[`${contextValue.userDetails?.showNextPage}_Labels`]?.reduce((errorObject, value) => {
+          errorObject[`${value}Error`] = !contextValue.userDetails[value];
+          console.log( contextValue.userDetails[value])
+          return errorObject;
+        }, {});
+      contextValue.userDetails?.setUserDetails({
+          errorState: {
+          ...contextValue.userDetails?.errorState,
+          ...setError
+          },
+      });
+      return (Object.values(setError).filter(value => value === true).length) === 0;
+    }else {
+      return true
+    }
   };
-
+  
   const handleNext = () => {
     if (contextValue.userDetails?.showNextPage !== "Step_6" &&
       errorValidate()
@@ -95,17 +100,9 @@ const Coveragereport = () => {
         });
       }
     } else if (contextValue.userDetails?.showNextPage === "Step_6") {
-      const apiUrl = process.env.REACT_APP_BACKEND_URL;
-
-      // Your username and password
-      const username = process.env.REACT_APP_UID;
-      const password = process.env.REACT_APP_PID;
-      // Create a base64-encoded string of the username and password
-      const base64Credentials = btoa(`${username}:${password}`);
-
-      // Your request payload for a POST request (adjust as needed)
+      
       const requestBody = {
-        api_key: process.env.REACT_APP_API_KEY,
+        api_key: '27f4ea3c-4f85-4748-ab57-36d4d6c14ab3',
         applicant_first_name: "string: REQUIRED",
         applicant_last_name: "string: REQUIRED",
         applicant_birthday: "string: REQUIRED yyyy-MM-dd",
@@ -145,8 +142,8 @@ const Coveragereport = () => {
         bqp_alt_name: "string",
         bqp_last_name_two: "string",
       };
-
-      fetchData(apiUrl, requestBody, base64Credentials);
+      // postData(requestBody);
+      fetchData(requestBody);
     }
   };
 
@@ -181,8 +178,10 @@ const Coveragereport = () => {
   };
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+  const handleListItemClick = (event) => {
+    contextValue.userDetails?.setUserDetails({
+      currentlyParticipate: event.target.innerText,
+    });
   };
 
   return (
@@ -314,7 +313,7 @@ const Coveragereport = () => {
                             label="Date of Birth"
                             name={"dob"}
                           />
-                          {/* <DatePicker /> */}
+                          <DatePicker /> 
                         </Grid>
                         <Grid item xs={12} md={12} lg={12}>
                           <TextFieldComponent
@@ -439,7 +438,7 @@ Program for Women, Infants & Children (WIC)"
                     </div>
                   </div>
                 )}
-                {contextValue.userDetails?.showNextPage === "Step_3" && (
+                {contextValue.userDetails?.showNextPage === "Step_4" && (
                   <div className="Step_3 ">
                     <Typography
                       variant="h5"
@@ -465,7 +464,14 @@ Program for Women, Infants & Children (WIC)"
                       <FormGroup className="items-start" key="termes_agree1">
                         <FormControlLabel
                           className="font_xs"
-                          control={<Checkbox defaultChecked size="small" />}
+                          control={<Checkbox defaultChecked size="small" checked={
+                            contextValue && contextValue.userDetails?.disclosureAgreements
+                          }
+                          onChange={(e) => {
+                            contextValue.userDetails?.setUserDetails({
+                              disclosureAgreements: e.target.checked,
+                            });
+                          }}/>}
                           label="For my household, I affirm and understand that the 
                                         Affordable Connectivity Program (ACP) is a federal 
                                         government benefit program operated by the (FCC) 
@@ -477,7 +483,7 @@ Program for Women, Infants & Children (WIC)"
                     </div>
                   </div>
                 )}
-                {contextValue.userDetails?.showNextPage === "Step_4" && (
+                {contextValue.userDetails?.showNextPage === "Step_5" && (
                   <div className="Step_4">
                     <Typography
                       variant="h5"
@@ -502,33 +508,33 @@ Program for Women, Infants & Children (WIC)"
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">Name</div>
-                          <div className="flex-1 formValue">Date of Birth</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.firstName + contextValue.userDetails?.lastName}</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
-                          <div className="flex-1 formCaption">Name</div>
-                          <div className="flex-1 formValue">Date of Birth</div>
+                          <div className="flex-1 formCaption">Date of Birth</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.dob}</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">SSN (last 4)</div>
-                          <div className="flex-1 formValue">XXXX</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.ssn}</div>
                         </div>
                       </div>
                       <div className="flex flex-row">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">Email</div>
                           <div className="flex-1 formValue">
-                            patrickwharram@gmail.com
+                          {contextValue.userDetails?.eMail}
                           </div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">Phone Number</div>
-                          <div className="flex-1 formValue">Phone Number</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.phNumber}</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
@@ -536,7 +542,7 @@ Program for Women, Infants & Children (WIC)"
                           <div className="flex-1 formCaption">
                             Governemnt Program
                           </div>
-                          <div className="flex-1 formValue">Snap</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.currentlyParticipate}</div>
                         </div>
                       </div>
                     </div>
@@ -547,25 +553,25 @@ Program for Women, Infants & Children (WIC)"
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">Address</div>
-                          <div className="flex-1 formValue">XXX</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.ADDRESSLINE1 + contextValue.userDetails?.ADDRESSLINE2 }</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">City</div>
-                          <div className="flex-1 formValue">XXX</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.City}</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">State</div>
-                          <div className="flex-1 formValue">XXXX</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.State}</div>
                         </div>
                       </div>
                       <div className="flex flex-row">
                         <div className="formvalues flex w-full">
                           <div className="flex-1 formCaption">Zip Code</div>
-                          <div className="flex-1 formValue">XXX</div>
+                          <div className="flex-1 formValue">{contextValue.userDetails?.addressAgree}</div>
                         </div>
                       </div>
                       <div className="flex flex-row mb-1">
@@ -573,13 +579,13 @@ Program for Women, Infants & Children (WIC)"
                           <div className="flex-1 formCaption">
                             Shipping Address
                           </div>
-                          <div className="flex-1 formValue">XXX</div>
+                          <div className="flex-1 formValue">Same as above</div>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
-                {contextValue.userDetails?.showNextPage === "Step_5" && (
+                {contextValue.userDetails?.showNextPage === "Step_3" && (
                   <div className="Step_5">
                     <Typography
                       variant="h5"
@@ -618,14 +624,21 @@ Program for Women, Infants & Children (WIC)"
                         <TextFieldComponent label="State" name={"State"} />
                       </Grid>
                       <Grid item xs={12} md={6} lg={6}>
-                        <TextFieldComponent label="Zipcode" name={"Zipcode"} />
+                        <TextFieldComponent label="Zipcode" name={"ADDRESSZipcode"} />
                       </Grid>
                     </Grid>
                     <div className="mt-4 addressCheckbox">
                       <FormGroup className="items-start" key="termes_agree2">
                         <FormControlLabel
                           className="font_xs"
-                          control={<Checkbox defaultChecked size="small" />}
+                          control={<Checkbox defaultChecked size="small" checked={
+                            contextValue && contextValue.userDetails?.addressAgree
+                          }
+                          onChange={(e) => {
+                            contextValue.userDetails?.setUserDetails({
+                              addressAgree: e.target.checked,
+                            });
+                          }}/>}
                           label="I have a different shipping address"
                         />
                       </FormGroup>

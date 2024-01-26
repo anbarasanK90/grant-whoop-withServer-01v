@@ -13,3 +13,15 @@ export const userLabels = {
   };
   
   export const step_1_Labels = ['firstName','lastName','eMail','phNumber','dob','ssn','agree']
+  export const validation = {
+    Step_1_Labels: ['firstName','lastName','eMail','phNumber','dob','ssn','agree'],
+    Step_2_Labels: ['currentlyParticipate'],
+    Step_3_Labels: ['ADDRESSLINE1',
+      'ADDRESSLINE2',
+      'City',
+      'State',
+      'ADDRESSZipcode',
+      'addressAgree'],
+
+  }
+  
