@@ -269,12 +269,14 @@ const Coveragereport = () => {
                         <TextFieldComponent
                           label="First Name"
                           name="firstName"
+                          className="w-full"
                         />
                       </Grid>
                       <Grid item xs={12} md={6} lg={6}>
                         <TextFieldComponent
                           label="Last Name"
                           name={"lastName"}
+                          className="w-full"
                         />
                       </Grid>
                       <Grid item xs={12} md={12} lg={12}>
@@ -712,9 +714,9 @@ Program for Women, Infants & Children (WIC)"
                     </React.Fragment>
                   ) : (
                     <React.Fragment>
-                      <Typography sx={{ mt: 2, mb: 1 }}>
+                      {/* <Typography sx={{ mt: 2, mb: 1 }}>
                         Step steps {activeStep + 1}
-                      </Typography>
+                      </Typography> */}
                       <Box
                         sx={{
                           display: "flex",

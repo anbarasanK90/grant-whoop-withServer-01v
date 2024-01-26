@@ -10,7 +10,7 @@ const ZipCodeCheck = () => {
   return (
     <>
       <div className="flex md:flex-row flex-col mt-4">
-        <div className="flex-1 me-3">
+        <div className="flex-1 md:me-3 me-0 mb-2">
           <InputBase
             className="custom_input"
             placeholder="Enter ZIP Code"
@@ -18,7 +18,7 @@ const ZipCodeCheck = () => {
             onChange={(e) => {setZipCode(e.target.value)}}
           />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 mb-2">
           <Button
             variant="contained"
             className="w-full !py-2 btn_success"

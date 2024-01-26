@@ -9,8 +9,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.font_Gothic{
+  font-family: 'League Gothic'!important;
+}
 h1,h2,h3,h4,h5,h6{
   font-family: 'League Gothic'!important;
+  line-height: normal;
 }
 p{
   font-family: Helvetica, Sans-Serif!important;
@@ -117,6 +121,9 @@ code {
 .text_blue{
   color:var(--color-textBlue);
 }
+.CoverageDiv h5{
+  margin-bottom: 10px;
+}
 .applyTodayDiv{
   background: rgb(235,90,12);
 background: linear-gradient(90deg, rgba(235,90,12,1) 0%, rgba(242,147,96,1) 100%);
@@ -177,7 +184,7 @@ ul.listItemsTwo li{
 .CoverageDiv{
   border:6px solid #eb7c25;
   border-radius:20px;
-  padding:15px;
+  padding:20px 15px;
   background: #fff;
 }
 .CoverageDiv .custom_input {
@@ -285,6 +292,9 @@ ul.listItemsTwo li{
   border-width: 1px;
   border-color:var(--green-border);
 }
+.green_color{
+  color:var(--green-border);
+}
 .readonlyvalues .formCaption{
   font-family: Arial, Helvetica, sans-serif!important;
   font-size: 12px;
@@ -299,4 +309,40 @@ ul.listItemsTwo li{
 .addressCheckbox .MuiCheckbox-root{
   padding-top:0px;
   padding-bottom: 0px;
+}
+.MuiFormControl-root.MuiTextField-root{
+  width:100%;
+}
+.Step_1,.Step_2,.Step_3,.Step_4,.Step_5{
+  min-height:400px;
+}
+.MuiStepIcon-text{
+  display: none;
+}
+.MuiSlider-valueLabelOpen{
+  display:none!important;
+}
+.MuiSlider-mark{
+  width: 3px!important;
+    height: 3px!important;
+}
+.CoverageDiv .MuiSlider-mark:first-child{
+  left:10px;
+}
+#bg_bottom{
+  position: relative;
+}
+#bg_bottom:before{
+  position: absolute;
+  content: url('../src/images/02_line_2.png');
+  top:20px;
+  right: -5px;
+}
+@media screen and (max-width: 768px) {
+  h3{
+    font-size: 3rem!important;
+  }
+  .free_text div{
+  font-size: 2rem;
+  }
 }

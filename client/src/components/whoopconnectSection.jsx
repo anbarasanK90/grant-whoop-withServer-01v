@@ -12,7 +12,7 @@ const WhoopconnectSection = () => {
     <section className='whoopconnectSection'>
         <Container fixed>
           <Grid container className='' spacing={2}>
-            <Grid item xs={12} md={7.5}>
+            <Grid item xs={12} md={7.5} className='md:!pe-10'>
               <img className='max-w-full' src={WhoopLogo1} />
               <Typography variant="p" color="white" className='' align="left" component="p">
                 We’re a leading Broadband and Technology Company offering Government
@@ -25,7 +25,7 @@ const WhoopconnectSection = () => {
               </Typography>
               <img className='max-w-full mt-8' src={Logo_All} />
             </Grid>
-            <Grid item xs={12} md={4.5}>
+            <Grid item xs={12} md={4.5} className='md:!ps-10'>
               <img className='max-w-full' src={Logo_03} />
               <div className='applyTodayDiv'>
                 <Typography variant="h2" color="white" align="center" component="h3">

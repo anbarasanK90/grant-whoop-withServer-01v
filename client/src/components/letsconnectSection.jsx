@@ -12,8 +12,8 @@ const LetsconnectSection = () => {
         <Container fixed>
           <Grid container className='' spacing={2}>
             <Grid item xs={12} md={5}>
-              <img className='max-w-full' src={Tablet_Img} alt=''/>
-              <img className='my-4 max-w-full' src={Logo_02} alt=''/>
+              <img className='max-w-full m-auto' src={Tablet_Img} alt=''/>
+              <img className='my-4 max-w-full m-auto' src={Logo_02} alt=''/>
               <div className='applyTodayDiv'>
                 <Typography variant="h2" color="white" align="center" component="h3">
                   APPLY TODAY
@@ -24,9 +24,9 @@ const LetsconnectSection = () => {
                 <ZipCodeCheck />
               </div>
             </Grid>
-            <Grid className='!pl-8' item xs={12} md={7}>
+            <Grid className='md:!pl-20' item xs={12} md={7}>
               <Typography variant="h2" className='text_blue !mb-2' align="left" component="h3">
-                LET’S GET YOU CONNECTED!
+                LET’S GET YOU <span id='bg_bottom'>CONNECTED!</span>
               </Typography>
               <Typography variant="p" color="black" className='!mb-2' align="left" component="p">
                 The Affordable Connectivity Program is a government-sponsored program that
@@ -35,7 +35,7 @@ const LetsconnectSection = () => {
               </Typography>
               <Typography variant="h2" className='text_blue !mb-2' align="left" component="h3">
                 How do I qualify for the<br></br>
-                Affordable Connectivity Program?
+                <span id="bg_bottom">Affordable</span> Connectivity Program?
               </Typography>
               <Typography variant="p" color="black" className='!mb-2 !mt-8' align="left" component="p">
                 If you, your child, or dependent participate in certain government assistance
@@ -46,7 +46,7 @@ const LetsconnectSection = () => {
               </Typography>
               <Typography variant="h2" className='text_blue !mb-2' align="left" component="h3">
                 What’s included in your connectivity
-                package all for an $11 co-pay!
+                package all for an <span className='green_color' id="bg_bottom">$11 co-pay!</span>
               </Typography>
               <ul className='listItemsTwo'>
                 <li>State-of-the-art 8" Whoop Tablet</li>
